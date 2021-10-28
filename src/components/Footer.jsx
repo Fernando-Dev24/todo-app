@@ -26,7 +26,7 @@ const FooterLink = styled(NavLink)`
 
 export const Footer = () => {
    /* contexts variables */
-   const { setTasks } = useTodoAppContexts();
+   const { todoTasks, setTasks } = useTodoAppContexts();
 
    /* handleDeleteTodos */
    const handleDeleteTodos = () => {
@@ -38,8 +38,12 @@ export const Footer = () => {
       <footer className="footer container">
          <nav className="footer__navbar">
             <FooterLink to="/" exact={true} marginright="true">All</FooterLink>
-            <FooterLink to="/completed" marginright="true">Completed</FooterLink>
-            <FooterLink to="/active">Active</FooterLink>
+            {todoTasks &&
+               <>
+                  <FooterLink to="/completed" marginright="true">Completed</FooterLink>
+                  <FooterLink to="/active">Active</FooterLink>
+               </>
+            }
          </nav>
          <button 
             className="btn__reset"
