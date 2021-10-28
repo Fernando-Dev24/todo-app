@@ -1,0 +1,41 @@
+.footer {
+   width: 100%;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   padding: 1.875rem; /* 30px */
+   border-radius: 10px;
+   background: $primaryColor;
+   &.container {
+      margin: 0 auto 1.875rem; /* 0 auto 30px */
+   }
+   .btn__reset {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem; /* 16px */
+      font-weight: 500;
+      border: none;
+      color: $grayColor;
+      background: transparent;
+      transition: all .3s ease;
+      cursor: pointer;
+      &:hover {
+         color: #fff;
+      }
+   }
+}
+
+@media screen and (max-width: 768px) {
+   .footer {
+      flex-direction: column;
+      .btn__reset {
+         margin-top: 1.25rem; /* 20px */
+         padding: 0.625rem 1.25rem; /* 10px 20px */
+         border-radius: 5px;
+         color: $primaryColor;
+         background: #fff;
+         &:hover {
+            color: $primaryColor;
+         }
+      }
+   }
+}
