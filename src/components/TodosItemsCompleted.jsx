@@ -47,38 +47,40 @@ export const TodosItemsCompleted = () => {
    return (
       <>
          <section className="todos__container container">
-            {completedTasks.map(( todo ) => {
-               return (
-                  <article className="todo__item" key={todo.id}>
-                     {todo.state === 'completed' ?
+            {todoTasks &&
+               completedTasks.map((todo) => {
+                  return (
+                     <article className="todo__item" key={todo.id}>
+                        {todo.state === 'completed' ?
+                           <button
+                              className="btn__check completed"
+                              id={todo.id}
+                              onClick={handleCompletedButton}>
+                              <MdDone className="check__icon" />      
+                           </button>
+                           :
+                           <button
+                              className="btn__check"
+                              id={todo.id}
+                              onClick={handleCompletedButton}>
+                              <MdDone className="check__icon" />      
+                           </button>
+                        }
+                        {todo.state === 'completed' ?
+                           <h3 className="todo__label completed">{todo.description}</h3>
+                           :
+                           <h3 className="todo__label">{todo.description}</h3>
+                        }
                         <button
-                           className="btn__check completed"
+                           className="btn__delete"
                            id={todo.id}
-                           onClick={handleCompletedButton}>
-                           <MdDone className="check__icon" />      
+                           onClick={handleDeleteTodo}>
+                           <MdDelete className="delete__icon" />
                         </button>
-                        :
-                        <button
-                           className="btn__check"
-                           id={todo.id}
-                           onClick={handleCompletedButton}>
-                           <MdDone className="check__icon" />      
-                        </button>
-                     }
-                     {todo.state === 'completed' ?
-                        <h3 className="todo__label completed">{todo.description}</h3>
-                        :
-                        <h3 className="todo__label">{todo.description}</h3>
-                     }
-                     <button
-                        className="btn__delete"
-                        id={todo.id}
-                        onClick={handleDeleteTodo}>
-                        <MdDelete className="delete__icon" />
-                     </button>
-                  </article>
-               );
-            })}
+                     </article>
+                  );
+               })
+            }
          </section>
       </>
    );
