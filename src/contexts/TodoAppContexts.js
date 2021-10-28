@@ -8,8 +8,15 @@ const TodoAppProvider = ({ children }) => {
    const [loading, setLoading] = useState(true);
 
    useEffect(() => {
-      setTasks(JSON.parse(localStorage.getItem('tasks')));
-      setLoading(false);
+      const existingTodosArray = JSON.parse(localStorage.getItem('tasks'));
+      if(existingTodosArray) {
+         setTasks(JSON.parse(localStorage.getItem('tasks')));
+         setLoading(false);
+      } else {
+         localStorage.setItem('tasks', JSON.stringify([]));
+         setTasks(JSON.parse(localStorage.getItem('tasks')));
+         setLoading(false);
+      }
    }, []);
 
    return (

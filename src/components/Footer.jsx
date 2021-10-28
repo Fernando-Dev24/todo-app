@@ -38,12 +38,8 @@ export const Footer = () => {
       <footer className="footer container">
          <nav className="footer__navbar">
             <FooterLink to="/" exact={true} marginright="true">All</FooterLink>
-            {todoTasks &&
-               <>
-                  <FooterLink to="/completed" marginright="true">Completed</FooterLink>
-                  <FooterLink to="/active">Active</FooterLink>
-               </>
-            }
+            <FooterLink to="/completed" marginright="true">Completed</FooterLink>
+            <FooterLink to="/active">Active</FooterLink>
          </nav>
          <button 
             className="btn__reset"
