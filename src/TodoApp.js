@@ -19,7 +19,7 @@ export const TodoApp = () => {
       <main>
          <Header />
          <Switch>
-            <Route exact={true} path="/" component={TodosItems} />
+            <Route path="/" exact={true} component={TodosItems} />
             <Route path="/completed" component={TodosItemsCompleted} />
             <Route path="/active" component={TodosItemsActive} />
          </Switch>

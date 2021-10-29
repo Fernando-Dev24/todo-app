@@ -26,7 +26,7 @@ const FooterLink = styled(NavLink)`
 
 export const Footer = () => {
    /* contexts variables */
-   const { todoTasks, setTasks } = useTodoAppContexts();
+   const { setTasks } = useTodoAppContexts();
 
    /* handleDeleteTodos */
    const handleDeleteTodos = () => {
