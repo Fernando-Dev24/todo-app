@@ -3,6 +3,8 @@ import React from 'react';
 import { useTodoAppContexts } from '../contexts/TodoAppContexts';
 /* Icons */
 import { MdDone, MdDelete } from 'react-icons/md';
+/* Elements */
+import { TodoButton, TodoButtonCompleted } from '../elements/TodoButton';
 
 export const TodosItems = () => {
    /* contexts variables */
@@ -10,23 +12,23 @@ export const TodosItems = () => {
    
    /* handleCompletedButton function */
    const handleCompletedButton = ({ target }) => {
-      if( target.attributes[0].value === 'btn__check' ) {
-         const todoIndex = todoTasks.findIndex((todo) => todo.id === target.id);
+      const targetTodo = todoTasks.find((todo) => todo.id === target.id);
+      const todoIndex = todoTasks.findIndex((todo) => todo.id === target.id);
+      if(targetTodo.state === 'active') {
          let newTodosArray = [...todoTasks];
          newTodosArray[todoIndex] = {...newTodosArray[todoIndex], state: 'completed'};
-   
-         /* Save the new array to update the localstorage */
+         
+         /* Save the changes on localStorage */
          localStorage.setItem('tasks', JSON.stringify(newTodosArray));
          setTasks(JSON.parse(localStorage.getItem('tasks')));
       } else {
-         const todoIndex = todoTasks.findIndex((todo) => todo.id === target.id);
          let newTodosArray = [...todoTasks];
          newTodosArray[todoIndex] = {...newTodosArray[todoIndex], state: 'active'};
-   
-         /* Save the new array to update the localstorage */
+
+         /* Save the changes on localStorage */
          localStorage.setItem('tasks', JSON.stringify(newTodosArray));
          setTasks(JSON.parse(localStorage.getItem('tasks')));
-      };
+      }
    };
 
    /* handleDeleteTodo */
@@ -43,20 +45,22 @@ export const TodosItems = () => {
                todoTasks.map((todo) => {
                   return (
                      <article className="todo__item" key={todo.id}>
-                        {todo.state === 'completed' ?
-                           <button
-                              className="btn__check completed"
+                        {todo.state === 'completed'?
+                           <TodoButtonCompleted
                               id={todo.id}
                               onClick={handleCompletedButton}>
-                              <MdDone className="check__icon" />      
-                           </button>
+                              <MdDone 
+                                 className="check__icon"
+                              />
+                           </TodoButtonCompleted>
                            :
-                           <button
-                              className="btn__check"
+                           <TodoButton
                               id={todo.id}
                               onClick={handleCompletedButton}>
-                              <MdDone className="check__icon" />      
-                           </button>
+                              <MdDone
+                                 className="check__icon"
+                              />
+                           </TodoButton>
                         }
                         {todo.state === 'completed' ?
                            <h3 className="todo__label completed">{todo.description}</h3>
